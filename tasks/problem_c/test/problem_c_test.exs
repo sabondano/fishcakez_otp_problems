@@ -12,7 +12,7 @@ defmodule ProblemCTest do
   test "fetch a value from a map when key does not exist returns {:error, _}" do
     assert {:error, %KeyError{}} =
       ProblemC.run(fn() ->
-        # key :buzz does exist in map
+        # key :buzz does not exist in map
         Map.fetch!(%{foo: :bar}, :buzz)
       end)
   end

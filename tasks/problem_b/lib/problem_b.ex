@@ -20,6 +20,12 @@ defmodule ProblemB do
   Stop the process.
   """
   def stop(pid) do
+    ref = Process.monitor(pid)
     send(pid, :stop)
+    receive do
+      {:DOWN, ^ref, :process, ^pid, :shutdown} ->
+        :ok
+      # msg -> IO.inspect(msg)
+    end
   end
 end

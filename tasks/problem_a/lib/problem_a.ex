@@ -10,7 +10,8 @@ defmodule ProblemA do
     Task.start_link(fn() ->
       receive do
         :stop ->
-          exit(:stop)
+          # For it to exit it expects an exit message with ':normal' reason.
+          exit(:normal)
       end
     end)
   end
