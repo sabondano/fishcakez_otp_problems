@@ -7,9 +7,9 @@ defmodule ProblemD do
   Start the Agents.
   """
   def start_link() do
-    strategy = :one_for_one
+    strategy = :one_for_all
 
-    ## Do not change code below
+    # Do not change code below
 
     import Supervisor.Spec, only: [worker: 3]
 

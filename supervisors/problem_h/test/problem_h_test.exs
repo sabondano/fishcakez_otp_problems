@@ -19,7 +19,7 @@ defmodule ProblemHTest do
 
   @tag :capture_log
   test "system can handle server crash" do
-    GenServer.stop(ProblemH.Client, :crash)
+    GenServer.stop(ProblemH.Server, :crash)
 
     # wait for restarts
     :timer.sleep(100)

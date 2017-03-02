@@ -10,13 +10,17 @@ defmodule ProblemC do
   """
 
   def start_link() do
-    GenServer.start_link(__MODULE__, nil)
+    # GenServer.start_link(__MODULE__, nil)
+    Supervisor.start_link(__MODULE__, nil)
   end
 
   def init(_) do
-    {:ok, _} = Person.start_link(:alice)
-    {:ok, _} = Person.start_link(:bob)
-    {:ok, nil}
+    import Supervisor.Spec, warn: false
+    supervise([worker(Person, [:alice], [id: :alice]), worker(Person, [:bob], [id: :bob])],
+              [strategy: :one_for_one])
+    # {:ok, _} = Person.start_link(:alice)
+    # {:ok, _} = Person.start_link(:bob)
+    # {:ok, nil}
   end
 
   ## Do not change code below
